@@ -1,0 +1,455 @@
+/*页面框架沙盒 用来绝对定位沙盒 --start--*/
+.main-sandbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.topology-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/*页面框架沙盒 --end--*/
+
+/*头部工具栏 --start--*/
+.topology-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 42px;
+    background-color: #F0F0F0;
+    border-bottom: solid 1px #c8c8c8;
+    z-index: 1110;
+}
+.topology-header > .box {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    line-height: 32px;
+    margin-top: 4px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.topology-header > .box > .item {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 8px 0 32px;
+    border-radius: 2px;
+    border: solid 1px transparent;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+.topology-header > .box > .item:hover,
+.topology-header > .box > .item:focus {
+    background-color: #d7d7d7;
+    border-color: #fff;
+}
+.topology-header > .box > .item:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 22px;
+    height: 22px;
+    background: url(./icons/save.png) center no-repeat;
+    background-size: 14px;
+    overflow: hidden;
+}
+.topology-header > .box > .item.back:before {
+    background: url(./icons/back.png) center no-repeat;
+    background-size: 14px;
+}
+.topology-header > .box > .item.clear:before {
+    background: url(./icons/clear.png) center no-repeat;
+    background-size: 14px;
+}
+.topology-header > .box > .item.smaller:before {
+    background: url(./icons/smaller.png) center no-repeat;
+    background-size: 14px;
+}
+.topology-header > .box > .item.bigger:before {
+    background: url(./icons/bigger.png) center no-repeat;
+    background-size: 14px;
+}
+.topology-header > .box > .item.center:before {
+    background: url(./icons/center.png) center no-repeat;
+    background-size: 12px;
+}
+.topology-header > .box > .item.fullscreen:before {
+    background: url(./icons/fullscreen.png) center no-repeat;
+    background-size: 12px;
+}
+.topology-header > .box > .item.pick:before {
+    background: url(./icons/pick.png) center no-repeat;
+    background-size: 10px;
+}
+.topology-header > .box > .item.remove:before {
+    background: url(./icons/remove.png) center no-repeat;
+    background-size: 14px;
+}
+/*头部工具栏 --end--*/
+
+/*canvas内容区域 --start--*/
+.topology-content {
+    position: absolute;
+    top: 40px;
+    left: 197px;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    z-index: 1108;
+}
+.topology-content > .canvas-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 22px;
+    overflow: hidden;
+}
+.topology-content > .progress-tool {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    height: 22px;
+    background-color: #f0f0f0;
+    border-top: solid 1px #c8c8c8;
+    overflow: hidden;
+}
+.topology-content > .progress-tool > span {
+    float: left;
+    height: 22px;
+    line-height: 24px;
+    padding: 0 50px;
+    color: #666;
+    font-size: 6px;
+    border-right: solid 1px #c8c8c8;
+}
+/*canvas内容区域 --start--*/
+
+/*工具内容区域 --start--*/
+.topology-tools {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    width: 197px;
+    border-left: solid 1px #c8c8c8;
+    background-color: #f0f0f0;
+    z-index: 1109;
+}
+
+/*分割线*/
+.topology-tools > .title {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    background-color: #dcdcdc;
+    z-index: 9;
+}
+.topology-tools > .title > .sub-title {
+    display: inline-block;
+    width: 46%;
+    height: 38px;
+    line-height: 48px;
+    color: #333;
+    background-color: #F0F0F0;
+    font-size: 14px;
+    text-align: center;
+}
+/*库原件盒子*/
+.topology-tools-nav {
+    width: 100%;
+    height: 100%;
+    padding-top: 38px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 8;
+}
+/*原件库标题*/
+.topology-tools-nav > li > a {
+    width: 60%;
+    height: 40px;
+    line-height: 2.25em;
+    padding: 8px 8px 8px 20px;
+    background-color: #f0f0f0;
+    color: #888;
+    font-size: 12px;
+}
+.topology-tools-nav > li > a:hover,
+.topology-tools-nav > li > a:focus {
+    background-color: #f0f0f0;
+}
+/*组件盒子*/
+.topology-tools-nav > li > .topology-tools-item {
+    background-color: #F0F0F0;
+    padding: 0;
+    overflow: hidden;
+}
+.topology-tools-item > li {
+    float: left;
+    width: 50%;
+    height: 98px;
+    margin: 0;
+}
+.topology-tools-item > li > .topo-item {
+    height: 98px;
+    padding: 23px 3px;
+    overflow: hidden;
+    border: solid 1px transparent;
+    color: #fff;
+    cursor: pointer;
+}
+.topology-tools-item > li > .topo-item.active {
+    background-color: #B8D6FF;
+    border-color: #407DD1;
+    color: #0b5996;
+}
+.topology-tools-item > li > .topo-item:hover,
+.topology-tools-item > li > .topo-item:focus {
+    background-color: #B8D6FF;
+    border-color: #407DD1;
+    color: #0b5996;
+}
+.topology-tools-item > li > .topo-item > img {
+    display: block;
+    margin: 0 auto;
+    height: 26px;
+}
+.topology-tools-item > li > .topo-item > span {
+    display: block;
+    text-align: center;
+    padding: 5px 0 0;
+    font-size: 12px;
+    color: #333;
+}
+/*工具内容区域 --end--*/
+
+
+#topoCanvas {
+    /*background: #fff url(icons/backimg.png);*/
+}
+
+/*属性填写弹出层 --start--*/
+.topo-prompt {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.topo-prompt.active {
+    display: block;
+}
+.topo-prompt > .layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1;
+}
+.topo-prompt > .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 546px;
+    margin-left: -400px;
+    margin-top: -300px;
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 2;
+}
+/*警告或提示确认框沙盒样式*/
+.topo-prompt > .warning-box {
+    width: 400px;
+    height: 200px;
+    margin-left: -200px;
+}
+.topo-prompt > .box > .title {
+    display: block;
+    position: relative;
+    height: 32px;
+    line-height: 16px;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-align: left;
+    color: #fff;
+    background-color: #044E8D;
+    box-sizing: border-box;
+}
+.topo-prompt > .box > .title > span {
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+.topo-promptlist {
+    display: block;
+    margin: 0;
+    padding: 0 20px 20px;
+    list-style: none;
+    overflow: hidden;
+}
+.topo-promptlist > li {
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+}
+.topo-promptlist > li > p {
+    margin: 15px 0 6px;
+    font-size: 12px;
+}
+.topo-promptlist > li > input {
+    font-size: 12px;
+}
+.topo-promptlist > li > .warning-img {
+    display: block;
+    width: 66px;
+    margin: 10px auto;
+}
+.topo-promptlist > li > .warning-txt {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+/*修改弹出文本输入框*/
+.topo-modify {
+    display: none;
+    position: fixed;
+    top: 344px;
+    left: 954px;
+    width: 160px;
+    height: 60px;
+    padding: 10px;
+    outline: none;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #666;
+    resize: none;
+    z-index: 1160;
+}
+.topo-modify.active {
+    display: block;
+}
+/*属性填写弹出层 --end--*/
+
+/*修改弹出文本输入框*/
+.topo-db-float {
+    display: none;
+    list-style: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 160px;
+    height: auto;
+    padding: 8px;
+    margin: 0;
+    background-color: #fff;
+    font-size: 12px;
+    color: #666;
+    border: solid 1px #DCDCDC;
+    border-radius: 0;
+    outline: none;
+    z-index: 1160;
+}
+.topo-db-float.active {
+    display: block;
+}
+.topo-db-float:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    border-top: solid 1px #DCDCDC;
+    border-left: solid 1px #DCDCDC;
+    transform: rotateZ(45deg);
+    background-color: #fff;
+}
+.topo-db-float > li {
+    padding: 5px;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+}
+.topo-db-float > li:last-child {
+    border-bottom-color: transparent;
+}
+.topo-db-float > li > .name {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px;
+    color: #999;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.topo-db-float > li > .txt {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+    color: #333;
+}
+/*属性填写弹出层 --end--*/
+
+/*通用样式 --start--*/
+.hidden-cls {
+    display: none;
+}
+.border-right {
+    border-right: solid 1px #d7d7d7;
+}
+.w100 {
+    width: 100%!important;
+}
+.button-row {
+    width: 100%!important;
+    margin-top: 26px;
+    overflow: hidden;
+}
+.form-control {
+    border-radius: 0;
+    height: 32px;
+    border-color: #dcdcdc!important;
+}
+.unit {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    border-left: solid 1px #dcdcdc;
+    background-color: #F0F0F0;
+}
+.h476 {
+    height: 476px !important;
+}
+.important-point {
+    padding: 0 5px;
+    color: #f00;
+}
+/*通用样式 --end--*/

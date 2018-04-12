@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>拓扑编辑器</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="能信科技拓扑编辑器"/>
+        <link href="assets/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="assets/topology.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="content" style="width: 850px;">
+            <div class="jtopo_toolbar">
+                <input type="button" id="saveButton" value="保存">&nbsp;&nbsp;
+                <!-- <input type="radio" name="modeRadio" value="normal" checked="" id="r1">
+                <label for="r1">默认</label>&nbsp;<input type="radio" name="modeRadio" value="select" id="r2">
+                <label for="r2">框选</label>&nbsp;<input type="radio" name="modeRadio" value="edit" id="r4">
+                <label for="r4">加线</label>&nbsp;&nbsp;<input type="button" id="centerButton" value="居中显示">
+                <input type="button" id="fullScreenButton" value="全屏显示">
+                <input type="button" id="zoomOutButton" value=" 放 大 ">
+                <input type="button" id="zoomInButton" value=" 缩 小 ">&nbsp;&nbsp;
+                <input type="checkbox" id="zoomCheckbox">
+                <label for="zoomCheckbox">鼠标缩放</label>&nbsp;&nbsp;
+                <input type="text" id="findText" style="width: 100px;" value="" onkeydown="enterPressHandler(event)">
+                <input type="button" id="findButton" value=" 查 询 ">&nbsp;&nbsp;
+                <input type="button" id="cloneButton" value="选中克隆">&nbsp;&nbsp;
+                <input type="button" id="exportButton" value="导出PNG">&nbsp;&nbsp;
+                <input type="button" id="printButton" value="导出PDF"> -->
+            </div>
+            <canvas width="850" height="550" id="canvas" style="background-color:rgb(238, 238, 238); border: 1px solid rgb(68, 68, 68);"></canvas>	
+        </div>        
+    </body>
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/jtopo-0.4.8-min.js"></script>
+    <script src="assets/toolbar.js"></script>
+    <script src="assets/test.js"></script>
+</html>

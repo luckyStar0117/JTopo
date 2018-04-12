@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现拖拽效果</title>
+    <link href="assets/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="assets/topology.css" type="text/css" rel="stylesheet" />
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/jtopo-0.4.8-min.js"></script>
+</head>
+<body>
+    <textarea id="jtopo_textfield" style="display:none;width: 60px;position: absolute;" onkeydown="if (event.keyCode==13) this.blur();"></textarea>
+    <div style="width: 100%;height: 100px;;">
+        <ul id="menu"></ul>
+    </div><br>
+    <div id="content">
+        <canvas width="1000px" height="800px" id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function drag(e)
+    {
+        e.dataTransfer.setData("imgSrc", e.target.src);
+    }
+
+    function allowDrop(e)
+    {
+        e.preventDefault();
+    }
+
+    function drop(e)
+    {
+        e.preventDefault();
+        imgSrc= e.dataTransfer.getData("imgSrc");
+    }
+
+    var scene, currentNode, startNode, endNode,
+    imgSrc="./assets/icons/1.png";
+    var isMove=false, nodeList=[];
+    $(function(){
+       var canvas = document.getElementById("canvas");
+        var stage = new JTopo.Stage(canvas);
+        var scene = new JTopo.Scene(stage);
+        
+        stage.mouseover(function(e){
+            if(null!= imgSrc){
+                addNodeToStage(imgSrc, e.x, e.y);
+                imgSrc = null;
+            }
+        });
+
+        function  addNodeToStage(img,x,y){
+            var b=new JTopo.Node("路由器");
+            b.setImage(img,true);
+            b.setLocation(x,y);
+            b.fontColor="0,0,0";
+            scene.add(b);
+
+            b.click(function(e){
+                if(0 == e.button)
+                    startNode = e.target;
+            });
+        }
+
+        var textfield = $("#jtopo_textfield");
+        scene.dbclick(function(event){
+           if(event.target == null) return;
+            var e = event.target;
+            textfield.css({
+                top:event.pageY+ e.width/2,
+                left:event.pageX- e.width/4
+            }).show().attr("value", e.text).focus().select();
+            e.text="";
+            textfield[0].JTopoNode = e;
+        });
+
+        $("#jtopo_textfield").blur(function(){
+           textfield[0].JTopoNode.text = textfield.hide().val();
+        });
+
+        scene.mousedown(function(e){
+           if(2 == e.button){
+               endNode = e.target;
+               if(endNode && endNode instanceof JTopo.Node){
+                   newLink(startNode,endNode,"连线");
+               }
+           }
+        });
+
+        function newLink(nodeA,nodeZ,text,dashedPattern){
+            var link = new JTopo.Link(nodeA,nodeZ,text);
+            link.lineWidth = 3;
+            link.dashedPattern = dashedPattern;
+            link.bundleOffset = 60;
+            link.bundleGap = 20;
+            link.textOffsetY = 3;
+            link.strokeColor="0,200,255";
+            link.fontColor = "0,0,0";
+            scene.add(link);
+        }
+
+        for (var i=1;i<=10;i++){
+            var icon = $("<img style='margin-left:6px;' src='./assets/icons/"+i+".png' draggable='true' ondragstart='drag(event)'>");
+            $("#menu").append(icon);
+        }
+    });
+</script>
+</html>
