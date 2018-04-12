@@ -439,8 +439,6 @@ function promptEvt(flag) {
                     });
                 }
                 node.text = box.find('input[name="name"]').eq(0).val();
-                console.log(node)
-                console.log(topologyInputParams)
                 scene.add(node);
                 currentNode = node;
             }

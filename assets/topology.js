@@ -1,6 +1,6 @@
 var imgPath = '../topology/assets/icons/',
     getTopology = location.origin + '/api/getTopology',
-    saveTopology = location.origin + '/api/saveTopology',
+    saveTopology = "../topology/assets/123.json",
     getPowerplant = "../topology/assets/powerList.json",
     getPowerPlantInfo = "../topology/assets/powerInfo.json",
     getUserList = "../topology/assets/userList.json",
